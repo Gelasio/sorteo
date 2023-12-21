@@ -1,0 +1,12 @@
+import requests
+import json
+
+def extract_random_comment(url):
+  response = requests.get(url)
+  comments = json.loads(response.content)["comments"]
+  comment_index = random.randint(0, len(comments) - 1)
+  comment = comments[comment_index]
+  user = comment["user"]["username"]
+  return comment, user
+
+print(extract_random_comment("https://www.instagram.com/reel/C1Ff86Wsx5Q/?igsh=MzRlODBiNWFlZA=="))
